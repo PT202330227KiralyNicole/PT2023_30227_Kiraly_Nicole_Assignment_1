@@ -26,7 +26,7 @@ public class Polynomial {
         Matcher m = p.matcher(text);
 
         try {
-            if (text.matches("(.*)xx(.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)")) throw new Exception("Bad input");
+            if (text.matches("(.*)[a-z][a-z](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)")) throw new Exception("Bad input");
         }catch(Exception ex){
             System.out.println(ex.getMessage());
             return null;
