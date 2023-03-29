@@ -39,12 +39,10 @@ public class Polynomial {
             double coeff = 0.0;
             int power = 0;
 
-
             if (coeffAux.isEmpty() && powerAux == null && aux.equals("")) {
                 continue;
             }
             try {
-
                 if(coeffAux.equals("") || coeffAux.equals("+") || coeffAux.equals("-")){
                     if(coeffAux.equals("+") || coeffAux.equals("")){
                         coeff = 1;
@@ -66,6 +64,11 @@ public class Polynomial {
                 if ( aux!=null && powerAux!=null) {
                     power = Integer.parseInt(powerAux);
                 }
+                if(result.getPolynoms().containsKey(power)){
+                    coeff = result.getPolynoms().get((power))+coeff;
+                    result.formPolynom(new Monomial(result.getPolynoms().get(power) + coeff, power));
+                }
+
                 mon.setCoefficient(coeff);
                 mon.setPower(power);
                 result.formPolynom(mon);
