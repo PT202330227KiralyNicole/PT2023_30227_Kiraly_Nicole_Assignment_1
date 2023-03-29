@@ -25,7 +25,7 @@ public class Polynomial {
         Matcher m = p.matcher(text);
 
         try {
-            if (text.matches("(.*)[a-z][a-z](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)") || text.matches("(.*)[`!@#$%^&()_=,.<>/?:;'{}](.*)")) throw new Exception("Bad input");
+            if (text.matches("(.*)[`a-wyz!@#$%&()_=,.<>/?:;'{}](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)")) throw new Exception("Bad input");
         }catch(Exception ex){
             System.out.println(ex.getMessage());
             return null;
@@ -34,13 +34,13 @@ public class Polynomial {
         while(m.find()) {
             String coeffAux = m.group(1);
             String powerAux = m.group(4);
-           String aux = m.group(2);
+            String aux = m.group(2);
             Monomial mon = new Monomial();
             double coeff = 0.0;
             int power = 0;
 
 
-          if (coeffAux.isEmpty() && powerAux == null && aux.equals("")) {
+            if (coeffAux.isEmpty() && powerAux == null && aux.equals("")) {
                 continue;
             }
             try {
@@ -51,7 +51,7 @@ public class Polynomial {
                     }
                     if(coeffAux.equals("-")) coeff = -1;
                 }
-               else if(!coeffAux.isEmpty()){
+                else if(!coeffAux.isEmpty()){
                     coeff = Double.parseDouble(coeffAux);
                 }
 //power = 1
@@ -60,7 +60,7 @@ public class Polynomial {
                 }
 //power = 0
                 if (powerAux == null && aux.equals("")) {
-                     power = 0;
+                    power = 0;
                 }
 
                 if ( aux!=null && powerAux!=null) {
@@ -75,7 +75,8 @@ public class Polynomial {
             }
         }
         return result;
-}
+    }
+
 
     public String toString() {
         String res="";
