@@ -67,8 +67,6 @@ public class Polynomial {
                 if ( aux!=null && powerAux!=null) {
                     power = Integer.parseInt(powerAux);
                 }
-
-
                 mon.setCoefficient(coeff);
                 mon.setPower(power);
                 result.formPolynom(mon);
