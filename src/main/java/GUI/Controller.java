@@ -1,4 +1,5 @@
 package GUI;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,7 +17,8 @@ public class Controller {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                  view.setResult("");
+                view.setResult("");
+
                 Polynomial polynom1 = Polynomial.retPolynom(view.getFirstInput());
                 Polynomial polynom2 = Polynomial.retPolynom(view.getSecondInput());
 
@@ -26,7 +28,6 @@ public class Controller {
                 view.setResult(result.toString());
 
             }
-
         });
 
         this.view.addSubButtonListener(new ActionListener() {
@@ -34,7 +35,8 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                  view.setResult("");
+                view.setResult("");
+
                 Polynomial polynom1 = Polynomial.retPolynom(view.getFirstInput());
                 Polynomial polynom2 = Polynomial.retPolynom(view.getSecondInput());
 
@@ -42,10 +44,7 @@ public class Controller {
                 Polynomial result = op.subPolynoms(polynom1, polynom2);
 
                 view.setResult(result.toString());
-
             }
-
-
         });
 
         this.view.addDerivButtonListener(new ActionListener() {
@@ -53,16 +52,14 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                  view.setResult("");
+                view.setResult("");
+
                 Polynomial polynom1 = Polynomial.retPolynom(view.getFirstInput());
 
                 Operations op = new Operations();
                 Polynomial result = op.derivPolynom(polynom1);
                 view.setResult(result.toString());
-
             }
-
-
         });
 
 
@@ -71,7 +68,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                   view.setResult("");
+                view.setResult("");
                 Polynomial polynom1 = Polynomial.retPolynom(view.getFirstInput());
 
                 Operations op = new Operations();
@@ -86,7 +83,8 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                  view.setResult("");
+                view.setResult("");
+
                 Polynomial polynom1 = Polynomial.retPolynom(view.getFirstInput());
                 Polynomial polynom2 = Polynomial.retPolynom(view.getSecondInput());
 
@@ -103,7 +101,8 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                    view.setResult("");
+                view.setResult("");
+
                 Polynomial polynom1 = Polynomial.retPolynom(view.getFirstInput());
                 Polynomial polynom2 = Polynomial.retPolynom(view.getSecondInput());
 

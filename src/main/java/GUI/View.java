@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class View extends JFrame{
+public class View extends JFrame {
     private JButton addButton;
     private JButton subButton;
     private JButton mulButton;
@@ -46,16 +46,14 @@ public class View extends JFrame{
         this.secondLabel = new JLabel("Second polynom:");
 
         this.firstTextField = new JTextField();
-        this.firstTextField.setPreferredSize(new Dimension(150,20));
+        this.firstTextField.setPreferredSize(new Dimension(150, 20));
         this.secondTextField = new JTextField();
-        this.secondTextField.setPreferredSize(new Dimension(150,20));
+        this.secondTextField.setPreferredSize(new Dimension(150, 20));
 
 
         this.resLabel = new JLabel("RESULT:");
         this.result = new JLabel();
-        this.result.setPreferredSize(new Dimension(300,20));
-
-
+        this.result.setPreferredSize(new Dimension(300, 20));
 
 
         JPanel p1 = new JPanel();
@@ -112,7 +110,6 @@ public class View extends JFrame{
         finalPanel.add(auxiliar);
 
 
-
         this.pack();
         this.setContentPane(finalPanel);
         this.setSize(500, 500);
@@ -125,9 +122,11 @@ public class View extends JFrame{
     public String getFirstInput() {
         return this.firstTextField.getText();
     }
+
     public String getSecondInput() {
         return this.secondTextField.getText();
     }
+
     public void addAddButtonListener(ActionListener actionListener) {
         this.addButton.addActionListener(actionListener);
     }
@@ -135,12 +134,15 @@ public class View extends JFrame{
     public void addSubButtonListener(ActionListener actionListener) {
         this.subButton.addActionListener(actionListener);
     }
+
     public void addMulButtonListener(ActionListener actionListener) {
         this.mulButton.addActionListener(actionListener);
     }
+
     public void addDivButtonListener(ActionListener actionListener) {
         this.divButton.addActionListener(actionListener);
     }
+
     public void addDerivButtonListener(ActionListener actionListener) {
         this.derivButton.addActionListener(actionListener);
     }
@@ -152,5 +154,6 @@ public class View extends JFrame{
     public void setResult(String message) {
         this.result.setText(message);
     }
+
 
 }

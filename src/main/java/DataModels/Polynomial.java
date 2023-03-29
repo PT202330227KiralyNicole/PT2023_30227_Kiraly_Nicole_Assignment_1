@@ -1,4 +1,5 @@
 package DataModels;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Polynomial {
-    private Map< Integer, Double> polynoms ;
+    private Map<Integer, Double> polynoms;
 
 
     public Polynomial() {
@@ -19,19 +20,20 @@ public class Polynomial {
     }
 
 
-    public static Polynomial retPolynom (String text)  {
+    public static Polynomial retPolynom(String text) {
         Polynomial result = new Polynomial();
         Pattern p = Pattern.compile("([+-]?\\d*\\.?\\d*)(x?)(\\^([+-]?\\d*\\.?\\d*))?");
         Matcher m = p.matcher(text);
 
         try {
-            if (text.matches("(.*)[`a-wyz!@#$%&()_=,.<>/?:;'{}](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)")) throw new Exception("Bad input");
-        }catch(Exception ex){
+            if (text.matches("(.*)[`a-wyz!@#$%&()_=,.<>/?:;'{}](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)"))
+                throw new Exception("Bad input");
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return null;
         }
 
-        while(m.find()) {
+        while (m.find()) {
             String coeffAux = m.group(1);
             String powerAux = m.group(4);
             String aux = m.group(2);
@@ -43,17 +45,16 @@ public class Polynomial {
                 continue;
             }
             try {
-                if(coeffAux.equals("") || coeffAux.equals("+") || coeffAux.equals("-")){
-                    if(coeffAux.equals("+") || coeffAux.equals("")){
+                if (coeffAux.equals("") || coeffAux.equals("+") || coeffAux.equals("-")) {
+                    if (coeffAux.equals("+") || coeffAux.equals("")) {
                         coeff = 1;
                     }
-                    if(coeffAux.equals("-")) coeff = -1;
-                }
-                else if(!coeffAux.isEmpty()){
+                    if (coeffAux.equals("-")) coeff = -1;
+                } else if (!coeffAux.isEmpty()) {
                     coeff = Double.parseDouble(coeffAux);
                 }
 //power = 1
-                if ( aux!=null && powerAux==null) {
+                if (aux != null && powerAux == null) {
                     power = 1;
                 }
 //power = 0
@@ -61,11 +62,11 @@ public class Polynomial {
                     power = 0;
                 }
 
-                if ( aux!=null && powerAux!=null) {
+                if (aux != null && powerAux != null) {
                     power = Integer.parseInt(powerAux);
                 }
-                if(result.getPolynoms().containsKey(power)){
-                    coeff = result.getPolynoms().get((power))+coeff;
+                if (result.getPolynoms().containsKey(power)) {
+                    coeff = result.getPolynoms().get((power)) + coeff;
                     result.formPolynom(new Monomial(result.getPolynoms().get(power) + coeff, power));
                 }
 
@@ -82,38 +83,39 @@ public class Polynomial {
 
 
     public String toString() {
-        String res="";
+        String res = "";
         TreeMap<Integer, Double> reverseMap = new TreeMap<>(Collections.reverseOrder());
         reverseMap.putAll(this.polynoms);
         for (Map.Entry<Integer, Double> entry : reverseMap.entrySet()) {
             int power = entry.getKey();
             double coeff = entry.getValue();
 
-            if(power == 0) {
-                if(coeff < 0)
+            if (power == 0) {
+                if (coeff < 0)
                     res = res + coeff;
                 else
-                    res = res + "+"+ coeff;
-            } else if(power == 1){
-                if(coeff < 0)
+                    res = res + "+" + coeff;
+            } else if (power == 1) {
+                if (coeff < 0)
                     res = res + coeff + "x";
                 else
-                    res = res + "+"+ coeff + "x";
-            } else if(coeff == 1) {
-                res = res + "+"+ "x^" + power;
-            } else if(coeff < 0) {
-                res = res + coeff+"x^"+power;
-            } else if(coeff > 0){
-                res=res+ "+"+coeff+"x^"+power;
+                    res = res + "+" + coeff + "x";
+            } else if (coeff == 1) {
+                res = res + "+" + "x^" + power;
+            } else if (coeff < 0) {
+                res = res + coeff + "x^" + power;
+            } else if (coeff > 0) {
+                res = res + "+" + coeff + "x^" + power;
             }
         }
         return res;
     }
 
-    public Map< Integer, Double> getPolynoms() {
+    public Map<Integer, Double> getPolynoms() {
         return polynoms;
     }
-    public void setPolynoms(Map< Integer, Double> polynoms) {
+
+    public void setPolynoms(Map<Integer, Double> polynoms) {
         this.polynoms = polynoms;
     }
 }

@@ -1,6 +1,8 @@
 package BusinessLogic;
+
 import DataModels.Monomial;
 import DataModels.Polynomial;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,6 +16,7 @@ public class Operations {
         this.polynom1 = polynom1;
         this.polynom2 = polynom2;
     }
+
     public Operations() {
         super();
     }
@@ -30,20 +33,21 @@ public class Operations {
                 int powerOther = entry1.getKey();
                 double coeffOther = entry1.getValue();
 
-                if(power == powerOther) {
+                if (power == powerOther) {
                     f = true;
-                    Monomial m = new Monomial(coeff+coeffOther, power);
+                    Monomial m = new Monomial(coeff + coeffOther, power);
                     result.formPolynom(m);
                     break;
                 }
             }
-            if(f == false) {
+            if (f == false) {
                 Monomial m = new Monomial(coeff, power);
                 result.formPolynom(m);
             }
         }
         return result;
     }
+
     public Polynomial subPolynoms(Polynomial polynom1, Polynomial polynom2) {
         Polynomial result = new Polynomial();
 
@@ -75,10 +79,10 @@ public class Operations {
     }
 
     public Polynomial mulPolynoms(Polynomial polynom1, Polynomial polynom2) {
-        Polynomial result= new Polynomial();
+        Polynomial result = new Polynomial();
 
         for (Map.Entry<Integer, Double> entry : polynom1.getPolynoms().entrySet()) {
-            Polynomial resultAux= new Polynomial();
+            Polynomial resultAux = new Polynomial();
             int power = entry.getKey();
             double coeff = entry.getValue();
             for (Map.Entry<Integer, Double> entry1 : polynom2.getPolynoms().entrySet()) {
@@ -88,7 +92,7 @@ public class Operations {
                 Monomial m = new Monomial(coeff * coeffOther, power + powerOther);
                 resultAux.formPolynom(m);
             }
-            result=addPolynoms(resultAux, result);
+            result = addPolynoms(resultAux, result);
         }
         return result;
     }
@@ -106,25 +110,25 @@ public class Operations {
         remainder.setPolynoms(reverseMap1);
         polynom2.setPolynoms(reverseMap2);
 
-        while( Collections.max(remainder.getPolynoms().keySet()) >= Collections.max(polynom2.getPolynoms().keySet() )) {
+        while (Collections.max(remainder.getPolynoms().keySet()) >= Collections.max(polynom2.getPolynoms().keySet())) {
             int powerP = Collections.max(remainder.getPolynoms().keySet());
             int powerQ = Collections.max(polynom2.getPolynoms().keySet());
 
             Polynomial aux = new Polynomial();
-            double coeffP =  reverseMap1.get(powerP);
+            double coeffP = reverseMap1.get(powerP);
             double coeffQ = reverseMap2.get(powerQ);
 
-            if(coeffQ == 0 && powerQ ==0) {
+            if (coeffQ == 0 && powerQ == 0) {
                 res = res + "You can t divide by 0!!!";
                 return res;
             }
 
-            Monomial m = new Monomial(coeffP/coeffQ, powerP-powerQ);
+            Monomial m = new Monomial(coeffP / coeffQ, powerP - powerQ);
             aux.formPolynom(m);
 
             quotient.formPolynom(m);
             remainder = subPolynoms(remainder, mulPolynoms(aux, polynom2));
-            if(remainder.toString() == ""){
+            if (remainder.toString() == "") {
                 break;
             }
 
@@ -135,13 +139,13 @@ public class Operations {
     }
 
     public Polynomial derivPolynom(Polynomial polynom1) {
-        Polynomial result= new Polynomial();
+        Polynomial result = new Polynomial();
 
         for (Map.Entry<Integer, Double> entry : polynom1.getPolynoms().entrySet()) {
             int power = entry.getKey();
             double coeff = entry.getValue();
-            if(power != 0) {
-                Monomial m = new Monomial(coeff * (double) power, power-1);
+            if (power != 0) {
+                Monomial m = new Monomial(coeff * (double) power, power - 1);
                 result.formPolynom(m);
             }
         }
@@ -149,13 +153,13 @@ public class Operations {
     }
 
     public Polynomial integralPolynom(Polynomial polynom1) {
-        Polynomial result= new Polynomial();
+        Polynomial result = new Polynomial();
 
         for (Map.Entry<Integer, Double> entry : polynom1.getPolynoms().entrySet()) {
             int power = entry.getKey();
             double coeff = entry.getValue();
 
-            Monomial m = new Monomial(coeff / (double) (power+1),  power+1);
+            Monomial m = new Monomial(coeff / (double) (power + 1), power + 1);
             result.formPolynom(m);
         }
         return result;
