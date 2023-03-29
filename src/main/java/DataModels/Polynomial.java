@@ -1,5 +1,4 @@
 package DataModels;
-import GUI.View;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class Polynomial {
         Matcher m = p.matcher(text);
 
         try {
-            if (text.matches("(.*)[a-z][a-z](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)")) throw new Exception("Bad input");
+            if (text.matches("(.*)[a-z][a-z](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)") || text.matches("(.*)[`!@#$%^&()_=,.<>/?:;'{}](.*)")) throw new Exception("Bad input");
         }catch(Exception ex){
             System.out.println(ex.getMessage());
             return null;

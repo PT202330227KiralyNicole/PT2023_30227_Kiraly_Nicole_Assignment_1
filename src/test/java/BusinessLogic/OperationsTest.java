@@ -65,7 +65,7 @@ class OperationsTest {
         polynom1 = Polynomial.retPolynom("4x^3+5x^2+3x^0");
         polynom2 =  Polynomial.retPolynom("9x^2+1x^1+1x^0");
         assertEquals("+4.0x^3-4.0x^2-1.0x+2.0",op.subPolynoms(polynom1, polynom2).toString());
-        assertNotEquals("-4x^3+7x^2+5x^1+13",op.subPolynoms(polynom1, polynom2).toString() );
+        assertEquals("-4x^3+7x^2+5x^1+13",op.subPolynoms(polynom1, polynom2).toString() );
         nrTestsSucces++;
     }
 
@@ -74,7 +74,7 @@ class OperationsTest {
         polynom1 = Polynomial.retPolynom("4x^3+5x^2+3x^0");
         polynom2 = Polynomial.retPolynom("3x^2+5x^1+1x^0");
         assertEquals("+12.0x^5+35.0x^4+29.0x^3+14.0x^2+15.0x+3.0",op.mulPolynoms(polynom1, polynom2).toString());
-        assertNotEquals("-4x^3+7x^2+5x^1+13",op.mulPolynoms(polynom1, polynom2).toString() );
+        assertEquals("-4x^3+7x^2+5x^1+13",op.mulPolynoms(polynom1, polynom2).toString() );
 
         polynom1 = Polynomial.retPolynom("4x^3+5x^2+3x^0");
         polynom2 =  Polynomial.retPolynom("9x^2+1x^1+1x^0");
