@@ -26,7 +26,7 @@ public class Polynomial {
         Matcher m = p.matcher(text);
 
         try {
-            if (text.matches("(.*)[`a-wyz!@#$%&()_=,.<>/?:;'{}](.*)") || text.matches("(.*)\\+\\-(.*)") || text.matches("(.*)\\+\\+(.*)") || text.matches("(.*)\\-\\+(.*)") || text.matches("(.*)\\-\\-(.*)"))
+            if (text.matches("(.*)\\+\\-") || text.matches("(.*)\\+\\+") || text.matches("(.*)\\-\\+") || text.matches("(.*)\\-\\-") || text.matches("(.*)xx") || text.matches("(.*)[`a-wyz!@#$%&()_=,.<>/?:;'{}]"))
                 throw new Exception("Bad input");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -88,24 +88,28 @@ public class Polynomial {
         reverseMap.putAll(this.polynoms);
         for (Map.Entry<Integer, Double> entry : reverseMap.entrySet()) {
             int power = entry.getKey();
-            double coeff = entry.getValue();
+            double coeff = Math.round(entry.getValue() *100.0) /100.0;
+            if (coeff == 0) {
+                res += "";
+            } else {
+                if (power == 0) {
+                    if (coeff < 0)
+                        res = res + coeff;
+                    else
+                        res = res + "+" + coeff;
+                } else if (power == 1) {
+                    if (coeff < 0)
+                        res = res + coeff + "x";
+                    else
+                        res = res + "+" + coeff + "x";
+                } else if (coeff == 1) {
+                    res = res + "+" + "x^" + power;
+                } else if (coeff < 0) {
+                    res = res + coeff + "x^" + power;
+                } else if (coeff > 0) {
+                    res = res + "+" + coeff + "x^" + power;
+                }
 
-            if (power == 0) {
-                if (coeff < 0)
-                    res = res + coeff;
-                else
-                    res = res + "+" + coeff;
-            } else if (power == 1) {
-                if (coeff < 0)
-                    res = res + coeff + "x";
-                else
-                    res = res + "+" + coeff + "x";
-            } else if (coeff == 1) {
-                res = res + "+" + "x^" + power;
-            } else if (coeff < 0) {
-                res = res + coeff + "x^" + power;
-            } else if (coeff > 0) {
-                res = res + "+" + coeff + "x^" + power;
             }
         }
         return res;
